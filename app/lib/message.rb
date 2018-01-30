@@ -3,7 +3,7 @@ class Message
     "Sorry, #{record} not found."
   end
 
-  def self.nvalid_credentials
+  def self.invalid_credentials
     'Invalid credentials'
   end
 
