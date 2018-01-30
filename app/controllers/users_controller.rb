@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  # before signup we don't need a token, only require user credentials
+  skip_before_action :authorize_request, only: :create
   # POST /signup
   # return authenticated token upon signup
   def create

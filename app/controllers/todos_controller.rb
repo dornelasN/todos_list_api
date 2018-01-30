@@ -3,7 +3,7 @@ class TodosController < ApplicationController
 
   # GET /todos
   def index
-    @todos = Todo.all
+    @todos = current_user.todos
     json_response(@todos)
   end
 
@@ -12,7 +12,7 @@ class TodosController < ApplicationController
     # create! raises an exception ActiveRecord::RecordInvalid, avoiding nested
     # if statements in the controller. This exception is recued in the
     # ExceptionHandler module
-    @todo = Todo.create!(todo_params)
+    @todo = current_user.todos.create!(todo_params)
     json_response(@todo, :created)
   end
 
@@ -36,7 +36,7 @@ class TodosController < ApplicationController
   private
 
   def todo_params
-    params.permit(:title, :created_by)
+    params.permit(:title)
   end
 
   # Find the todo that will be showed, updated, or destroyed before the action
